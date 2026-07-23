@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Project page for TableVerse: A Large-scale Tabletop Dataset with Real-world Grounded Layouts for Generalizable Manipulation.">
+  <meta name="keywords" content="TableVerse, tabletop dataset, manipulation, robotics, project page">
+  <title>TableVerse — Project Page</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Castoro&family=Google+Sans:wght@400;500;700&family=Inter:wght@300;400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Bulma -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="static/css/paper.css?v=2026-07-23a">
+
+  <!-- Theme: fixed default, no per-load randomization. -->
+  <script>
+    document.documentElement.setAttribute('data-theme', 'mono');
+  </script>
+</head>
+
+<body>
+
+  <!-- Sticky nav -->
+  <nav class="topnav" id="topnav">
+    <div class="topnav-inner">
+      <button class="brand-mark" id="theme-toggle" type="button"
+              aria-label="Switch theme" data-theme-label="Indigo"></button>
+      <a class="topnav-brand" href="#top">
+        <span class="brand-text">TableVerse</span>
+      </a>
+      <div class="topnav-links">
+        <a href="#top">Main</a>
+        <a href="#abstract">Abstract</a>
+        <a href="#stats">Dataset</a>
+        <a href="#method">Method</a>
+        <a href="#results">Results</a>
+        <a href="#bibtex">BibTeX</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero" id="top">
+    <div class="hero-bg" aria-hidden="true">
+      <div class="hero-grid"></div>
+      <div class="hero-glow hero-glow-a"></div>
+      <div class="hero-glow hero-glow-b"></div>
+      <div class="hero-glow hero-glow-c"></div>
+    </div>
+
+    <!-- Test set marquee as the hero backdrop -->
+    <div class="hero-marquee" aria-hidden="true">
+      <div id="test-set-root"></div>
+    </div>
+    <div class="hero-mask" aria-hidden="true"></div>
+
+    <div class="hero-body">
+      <div class="container is-max-desktop has-text-centered">
+        <h1 class="publication-title reveal">
+          <span class="title-accent">TableVerse</span><span class="title-divider">:</span>
+          <span class="title-rest"><span class="word">A</span> <span class="word">Large-scale</span> <span class="word">Tabletop</span> <span class="word">Dataset</span> <span class="word">with</span> <span class="word">Real-world</span> <span class="word">Grounded</span> <span class="word">Layouts</span> <span class="word">for</span> <span class="word">Generalizable</span> <span class="word">Manipulation</span></span>
+        </h1>
+
+        <div class="publication-authors reveal">
+          <span class="author-block">ByteDance</span>
+        </div>
+
+        <div class="publication-links reveal">
+          <a class="link-pill" href="#" target="_blank" rel="noopener">
+            <span class="icon"><i class="fas fa-file-pdf"></i></span>
+            <span>Paper</span>
+          </a>
+          <a class="link-pill" href="https://huggingface.co/datasets/ByteDance/TableVerse" target="_blank" rel="noopener">
+            <span class="icon"><i class="fas fa-database"></i></span>
+            <span>Dataset</span>
+          </a>
+        </div>
+
+        <a href="#abstract" class="hero-scroll reveal" aria-label="Scroll down">
+          <span></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Test Set strip is now the hero backdrop above. -->
+
+  <!-- Abstract -->
+  <section class="section section-card" id="abstract">
+    <div class="container is-max-desktop">
+      <div class="section-eyebrow reveal">01 — Abstract</div>
+      <h2 class="section-title reveal">A Real2Sim pipeline grounded in the real world</h2>
+      <div class="content has-text-justified reveal">
+        <p>
+          The development of generalizable robotic manipulation policies is
+          inherently bounded by the availability of large-scale, high-fidelity
+          scene data. While recent automated synthesis methods attempt to
+          bridge this gap via text-to-layout hallucination or simplified
+          procedural generation, they frequently suffer from physical
+          implausibility and fail to capture the complex, dense clutter of
+          actual human environments.
+        </p>
+        <p>
+          In this paper, we introduce <strong>TableVerse</strong>, a fully
+          automated Real2Sim pipeline that shifts the paradigm from imaginative
+          layout generation to deterministic reconstruction from unstructured,
+          <em>in-the-wild</em> image data. Our framework seamlessly processes
+          unscripted internet media into high-fidelity, simulation-ready
+          tabletop environments with accurate metric scales, authentic
+          topologies, and verified mechanical stability. Furthermore, an
+          automated task-conditioned trajectory generation framework is
+          integrated to synthesize high-quality, collision-free pick-and-place
+          demonstrations.
+        </p>
+        <p>
+          Leveraging this complete pipeline, we construct the
+          <strong>TableVerse-100K Dataset</strong>, a large-scale corpus
+          comprising 100,000 unique, physically consistent environments paired
+          with interactive manipulation trajectories. By capturing diverse
+          asset compositions, realistic spatial distributions, and high-quality
+          demonstrations, TableVerse-100K establishes a highly scalable and
+          high-fidelity data foundation, providing significant value to
+          facilitate future research in generalizable robotic manipulation
+          tasks.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="section section-stats" id="stats">
+    <div class="container is-max-desktop">
+      <div class="section-eyebrow reveal">02 — TableVerse-100K</div>
+      <h2 class="section-title reveal">A peek at the seven everyday tabletop themes</h2>
+      <p class="reveal" style="max-width: 760px; margin: 0 0 1.5rem; color: var(--ink-soft);">
+        TableVerse-100K is grounded in real-world contexts. Browse a curated sample
+        from each scene category — click any thumbnail to inspect it.
+      </p>
+
+      <div class="stats-grid">
+        <div class="stat-card tilt spotlight reveal reveal-zoom">
+          <div class="stat-value" data-target="100" data-suffix="K">0</div>
+          <div class="stat-label">Unique tabletop scenes</div>
+          <div class="stat-sub">reconstructed from in-the-wild images</div>
+        </div>
+        <div class="stat-card tilt spotlight reveal reveal-zoom">
+          <div class="stat-value" data-target="1" data-suffix="M">0</div>
+          <div class="stat-label">Object instances</div>
+          <div class="stat-sub">arranged across all scenes</div>
+        </div>
+        <div class="stat-card tilt spotlight reveal reveal-zoom">
+          <div class="stat-value" data-target="35" data-suffix="K">0</div>
+          <div class="stat-label">Object categories</div>
+          <div class="stat-sub">covering everyday tabletop objects</div>
+        </div>
+      </div>
+
+      <div class="wordclouds reveal">
+        <figure class="wordcloud spotlight">
+          <img src="assets/categories.jpg" alt="Object category word cloud">
+        </figure>
+        <figure class="wordcloud spotlight">
+          <img src="assets/phrases.jpg" alt="Adjective phrase word cloud">
+        </figure>
+        <figure class="wordcloud spotlight">
+          <img src="assets/num_distribution.jpg" alt="Object count distribution">
+        </figure>
+      </div>
+
+      <div id="scenes-root" class="reveal" style="margin-top: 2.5rem;"></div>
+
+      <div class="method-videos reveal" style="margin-top: 2.5rem;">
+        <figure class="method-video spotlight"><video src="assets/demo1.mp4"  autoplay loop muted playsinline preload="metadata"></video></figure>
+        <figure class="method-video spotlight"><video src="assets/demo2.mp4"  autoplay loop muted playsinline preload="metadata"></video></figure>
+        <figure class="method-video spotlight"><video src="assets/demo3.mp4"  autoplay loop muted playsinline preload="metadata"></video></figure>
+        <figure class="method-video spotlight"><video src="assets/demo4.mp4"  autoplay loop muted playsinline preload="metadata"></video></figure>
+        <figure class="method-video spotlight"><video src="assets/demo5.mp4"  autoplay loop muted playsinline preload="metadata"></video></figure>
+        <figure class="method-video spotlight"><video src="assets/demo6.mp4"  autoplay loop muted playsinline preload="metadata"></video></figure>
+        <figure class="method-video spotlight"><video src="assets/demo7.mp4"  autoplay loop muted playsinline preload="metadata"></video></figure>
+        <figure class="method-video spotlight"><video src="assets/demo8.mp4"  autoplay loop muted playsinline preload="metadata"></video></figure>
+        <figure class="method-video spotlight"><video src="assets/demo9.mp4"  autoplay loop muted playsinline preload="metadata"></video></figure>
+        <figure class="method-video spotlight"><video src="assets/demo10.mp4" autoplay loop muted playsinline preload="metadata"></video></figure>
+        <figure class="method-video spotlight"><video src="assets/demo11.mp4" autoplay loop muted playsinline preload="metadata"></video></figure>
+        <figure class="method-video spotlight"><video src="assets/demo12.mp4" autoplay loop muted playsinline preload="metadata"></video></figure>
+        <figure class="method-video spotlight"><video src="assets/demo13.mp4" autoplay loop muted playsinline preload="metadata"></video></figure>
+        <figure class="method-video spotlight"><video src="assets/demo14.mp4" autoplay loop muted playsinline preload="metadata"></video></figure>
+        <figure class="method-video spotlight"><video src="assets/demo15.mp4" autoplay loop muted playsinline preload="metadata"></video></figure>
+        <figure class="method-video spotlight"><video src="assets/demo16.mp4" autoplay loop muted playsinline preload="metadata"></video></figure>
+      </div>
+      <p class="method-videos-caption reveal">
+        <strong>Demos.</strong> Generated Pick &amp; Place rollouts in simulation across different reconstructed scenes.
+      </p>
+    </div>
+  </section>
+
+  <!-- Method -->
+  <section class="section section-grey" id="method">
+    <div class="container is-max-desktop">
+      <div class="section-eyebrow reveal">03 — Method</div>
+      <h2 class="section-title reveal">From a single image to a simulation-ready scene</h2>
+
+      <figure class="image method-figure spotlight reveal reveal-zoom">
+        <img src="assets/pipeline.png" alt="Method pipeline"
+             onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'placeholder placeholder-wide',innerText:'Place assets/pipeline.png next to index.html'}));">
+        <figcaption>
+          <strong>Figure 1.</strong> Overview of the TableVerse pipeline.
+        </figcaption>
+      </figure>
+
+      <h3 class="method-subtitle reveal">Image-based Task Generation</h3>
+      <figure class="image method-figure spotlight reveal reveal-zoom">
+        <img src="assets/task_gen.png" alt="Pick &amp; Place task generation from front and top views"
+             onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'placeholder placeholder-wide',innerText:'Place assets/task_gen.png next to index.html'}));">
+        <figcaption>
+          <strong>Figure 2.</strong> Pick &amp; Place task generation. Conditioned on the
+          rendered front and top views of a reconstructed scene, an MLLM proposes
+          object-to-target task pairs that are then realized as collision-free
+          manipulation demonstrations.
+        </figcaption>
+      </figure>
+
+      <div class="content has-text-justified reveal">
+        <p>
+          Given an unscripted image of a real tabletop scene, our pipeline
+          recovers metric geometry, instantiates simulation-ready assets, and
+          verifies mechanical stability before producing task-conditioned
+          manipulation demonstrations.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Results -->
+  <section class="section" id="results">
+    <div class="container is-max-widescreen">
+      <div class="section-eyebrow reveal">04 — Results</div>
+      <h2 class="section-title reveal">Qualitative comparison with prior work</h2>
+      <p class="section-subtitle reveal">
+        100 in-the-wild test scenes · 4 methods × 3 viewpoints in a single
+        grid. Use the filmstrip below to switch scene, click any panel to
+        enlarge, or press <kbd>R</kbd> for a random scene.
+      </p>
+
+      <div id="compare-root" class="reveal">
+        <!-- populated by compare.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- BibTeX -->
+  <section class="section" id="bibtex">
+    <div class="container is-max-desktop">
+      <div class="section-eyebrow reveal">05 — Citation</div>
+      <h2 class="section-title reveal">BibTeX</h2>
+      <div class="bibtex-wrapper reveal">
+        <button id="bibtex-copy" class="bibtex-copy" type="button">
+          <i class="far fa-copy"></i> <span>Copy</span>
+        </button>
+<pre id="bibtex-content">@misc{tableverse2026,
+  title         = {TableVerse: A Large-scale Tabletop Dataset with Real-world Grounded Layouts for Generalizable Manipulation},
+  author        = {ByteDance},
+  year          = {2026},
+  eprint        = {XXXX.XXXXX},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.RO}
+}</pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container is-max-desktop has-text-centered">
+      <p>
+        Page template adapted from
+        <a href="https://github.com/nerfies/nerfies.github.io" target="_blank" rel="noopener">Nerfies</a>.
+      </p>
+    </div>
+  </footer>
+
+  <button class="back-to-top" id="back-to-top" aria-label="Back to top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <!-- Reading-progress bar + custom cursor (created at runtime) -->
+  <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
+
+  <script src="static/js/test_set.js?v=2026-05-27" defer></script>
+  <script src="static/js/scenes.js?v=2026-06-30c" defer></script>
+  <script src="static/js/compare.js?v=2026-06-09g" defer></script>
+  <script>
+    // ---------- Theme toggle: click brand square to cycle colors ----------
+    (function () {
+      const THEMES = [
+        { key: 'indigo', label: 'Indigo' },
+        { key: 'sunset', label: 'Sunset' },
+        { key: 'forest', label: 'Forest' },
+        { key: 'rose',   label: 'Rose'   },
+        { key: 'ocean',  label: 'Ocean'  },
+        { key: 'mono',   label: 'Mono'   },
+      ];
+      const root = document.documentElement;
+      const btn  = document.getElementById('theme-toggle');
+      if (!btn) return;
+      function applyByKey(k) {
+        const t = THEMES.find(x => x.key === k) || THEMES[0];
+        root.setAttribute('data-theme', t.key);
+        btn.dataset.themeLabel = t.label;
+        btn.setAttribute('aria-label', 'Theme: ' + t.label + ' (click to change)');
+      }
+      // Initialize (consistent with the preset in <head>).
+      applyByKey(root.getAttribute('data-theme') || 'indigo');
+      btn.addEventListener('click', () => {
+        const cur = root.getAttribute('data-theme') || 'indigo';
+        const i = THEMES.findIndex(x => x.key === cur);
+        const next = THEMES[(i + 1) % THEMES.length];
+        applyByKey(next.key);
+        // Trigger a brief pop animation and flash the tooltip.
+        btn.classList.remove('is-flash');
+        void btn.offsetWidth;
+        btn.classList.add('is-flash');
+      });
+    })();
+    // ---------- Sticky nav: shrink on scroll ----------
+    (function () {
+      const nav = document.getElementById('topnav');
+      const onScroll = () => {
+        if (window.scrollY > 12) nav.classList.add('is-shrunk');
+        else nav.classList.remove('is-shrunk');
+      };
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    })();
+
+    // ---------- Reveal-on-scroll ----------
+    (function () {
+      const els = document.querySelectorAll('.reveal');
+      if (!('IntersectionObserver' in window)) {
+        els.forEach(el => el.classList.add('is-visible'));
+        return;
+      }
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('is-visible');
+            io.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+      els.forEach(el => io.observe(el));
+    })();
+
+    // ---------- Stat counters ----------
+    (function () {
+      const stats = document.querySelectorAll('.stat-value');
+      if (!stats.length) return;
+      const formatNumber = (n) => {
+        if (n >= 1000000) return (n / 1000000).toFixed(n % 1000000 === 0 ? 0 : 1) + 'M';
+        if (n >= 1000)    return (n / 1000).toFixed(n % 1000 === 0 ? 0 : 1) + 'K';
+        return Math.round(n).toString();
+      };
+      const animate = (el) => {
+        const text = el.dataset.text;
+        if (text) { el.innerText = text; return; }
+        const target = parseFloat(el.dataset.target || '0');
+        const suffix = el.dataset.suffix || '';
+        const dur = 1400;
+        const t0 = performance.now();
+        const tick = (now) => {
+          const t = Math.min(1, (now - t0) / dur);
+          const eased = 1 - Math.pow(1 - t, 3);
+          const cur = target * eased;
+          el.innerText = formatNumber(cur) + suffix;
+          if (t < 1) requestAnimationFrame(tick);
+          else el.innerText = formatNumber(target) + suffix;
+        };
+        requestAnimationFrame(tick);
+      };
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) { animate(e.target); io.unobserve(e.target); }
+        });
+      }, { threshold: 0.4 });
+      stats.forEach(el => io.observe(el));
+    })();
+
+    // ---------- Back to top ----------
+    (function () {
+      const btn = document.getElementById('back-to-top');
+      const onScroll = () => {
+        if (window.scrollY > 600) btn.classList.add('is-visible');
+        else btn.classList.remove('is-visible');
+      };
+      window.addEventListener('scroll', onScroll, { passive: true });
+      btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+      onScroll();
+    })();
+
+    // ---------- BibTeX copy ----------
+    (function () {
+      var btn = document.getElementById('bibtex-copy');
+      var pre = document.getElementById('bibtex-content');
+      if (!btn || !pre) return;
+      btn.addEventListener('click', function () {
+        var text = pre.innerText;
+        var label = btn.querySelector('span');
+        var done = function () {
+          label.innerText = 'Copied!';
+          btn.classList.add('is-done');
+          setTimeout(function () {
+            label.innerText = 'Copy';
+            btn.classList.remove('is-done');
+          }, 1500);
+        };
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(done).catch(done);
+        } else {
+          var ta = document.createElement('textarea');
+          ta.value = text;
+          document.body.appendChild(ta);
+          ta.select();
+          try { document.execCommand('copy'); } catch (e) {}
+          document.body.removeChild(ta);
+          done();
+        }
+      });
+    })();
+
+    // ---------- Reading-progress bar ----------
+    (function () {
+      const bar = document.getElementById('scroll-progress');
+      if (!bar) return;
+      const update = () => {
+        const h = document.documentElement;
+        const max = h.scrollHeight - h.clientHeight;
+        const pct = max > 0 ? (h.scrollTop / max) * 100 : 0;
+        bar.style.width = pct.toFixed(2) + '%';
+      };
+      window.addEventListener('scroll', update, { passive: true });
+      window.addEventListener('resize', update);
+      update();
+    })();
+
+    // ---------- Split title into per-word + per-char spans ----------
+    // The .word wrappers come straight from the HTML (display:inline-block;
+    // white-space:nowrap); here we only replace characters inside each .word
+    // with spans, never crossing a word boundary.
+    (function () {
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduce) return;
+      const title = document.querySelector('.publication-title');
+      if (!title) return;
+      let ci = 0;
+      const wrapText = (text) => {
+        const frag = document.createDocumentFragment();
+        for (const ch of text) {
+          const s = document.createElement('span');
+          s.className = 'char';
+          s.style.setProperty('--ci', ci++);
+          s.textContent = ch;
+          frag.appendChild(s);
+        }
+        return frag;
+      };
+      // 1) accent: the whole segment is a single word "TableVerse", so
+      //    split it directly into characters.
+      const accent = title.querySelector('.title-accent');
+      if (accent) {
+        const text = accent.textContent;
+        accent.textContent = '';
+        accent.appendChild(wrapText(text));
+      }
+      // 2) rest: already pre-wrapped into multiple .word spans; split each
+      //    one into characters.
+      const rest = title.querySelector('.title-rest');
+      if (rest) {
+        rest.querySelectorAll('.word').forEach((w) => {
+          const text = w.textContent;
+          w.textContent = '';
+          w.appendChild(wrapText(text));
+        });
+      }
+    })();
+
+    // ---------- Stagger reveal indices ----------
+    (function () {
+      // Group reveals per parent-section so they cascade together.
+      document.querySelectorAll('section').forEach((section) => {
+        const list = section.querySelectorAll('.reveal');
+        list.forEach((el, i) => {
+          if (!el.style.getPropertyValue('--i')) {
+            el.style.setProperty('--i', Math.min(i, 8));
+          }
+        });
+      });
+    })();
+
+    // ---------- 3D tilt on .tilt elements ----------
+    (function () {
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduce) return;
+      const tilts = document.querySelectorAll('.tilt');
+      const handle = (el) => {
+        const rect = el.getBoundingClientRect();
+        return (e) => {
+          const x = (e.clientX - rect.left) / rect.width;
+          const y = (e.clientY - rect.top)  / rect.height;
+          const rx = (0.5 - y) * 8;        // deg
+          const ry = (x - 0.5) * 10;
+          el.style.transform = `perspective(700px) rotateX(${rx}deg) rotateY(${ry}deg) translateZ(0)`;
+        };
+      };
+      tilts.forEach((el) => {
+        let move;
+        el.addEventListener('mouseenter', () => { move = handle(el); el.addEventListener('mousemove', move); });
+        el.addEventListener('mouseleave', () => {
+          if (move) el.removeEventListener('mousemove', move);
+          el.style.transform = '';
+        });
+      });
+    })();
+
+    // ---------- Spotlight glow follows cursor ----------
+    (function () {
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduce) return;
+      document.querySelectorAll('.spotlight').forEach((el) => {
+        el.addEventListener('mousemove', (e) => {
+          const rect = el.getBoundingClientRect();
+          const x = ((e.clientX - rect.left) / rect.width) * 100;
+          const y = ((e.clientY - rect.top)  / rect.height) * 100;
+          el.style.setProperty('--mx', x + '%');
+          el.style.setProperty('--my', y + '%');
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
