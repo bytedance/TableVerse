@@ -1,7 +1,7 @@
 # TableVerse: A Large-scale Tabletop Dataset with Real-world Grounded Layouts for Generalizable Manipulation
 
-[![Paper](https://img.shields.io/badge/Paper-arXiv-3b82f6.svg?style=for-the-badge)](https://arxiv.org/abs/XXXX.XXXXX)
-[![Paper](https://img.shields.io/badge/Paper-PDF-e04a3f.svg?style=for-the-badge)](https://arxiv.org/pdf/XXXX.XXXXX)
+[![Paper](https://img.shields.io/badge/Paper-arXiv-3b82f6.svg?style=for-the-badge)](https://arxiv.org/abs/2607.21017)
+[![Paper](https://img.shields.io/badge/Paper-PDF-e04a3f.svg?style=for-the-badge)](https://arxiv.org/pdf/2607.21017)
 [![Data](https://img.shields.io/badge/Data-HuggingFace-d6336c.svg?style=for-the-badge&logo=huggingface&logoColor=white)](https://huggingface.co/datasets/ByteDance/TableVerse)
 [![Home](https://img.shields.io/badge/Home-Website-2ca69c.svg?style=for-the-badge)](https://bytedance.github.io/TableVerse)
 
@@ -18,7 +18,7 @@
   title         = {TableVerse: A Large-scale Tabletop Dataset with Real-world Grounded Layouts for Generalizable Manipulation},
   author        = {ByteDance},
   year          = {2026},
-  eprint        = {XXXX.XXXXX},
+  eprint        = {2607.21017},
   archivePrefix = {arXiv},
   primaryClass  = {cs.RO}
 }
