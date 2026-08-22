@@ -16,9 +16,9 @@
     uids = await r.json();
   } catch (e) {
     root.innerHTML = `
-      <p class="content has-text-centered" style="color:var(--ink-mute);">
-        Run <code>bash compress_compare.sh</code> first to populate
-        <code>TableVerse/compare/</code>.
+      <p class="content has-text-centered" style="color:var(--muted);">
+        Unable to load <code>compare/list.json</code>. Verify that the JSON list
+        and referenced files under <code>compare/</code> are included in the Pages deployment.
       </p>`;
     return;
   }

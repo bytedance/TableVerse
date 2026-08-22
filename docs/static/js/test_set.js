@@ -14,9 +14,9 @@
     uids = await r.json();
   } catch (e) {
     root.innerHTML = `
-      <p class="content has-text-centered" style="color:var(--ink-mute);">
-        Run <code>bash compress_test_set.sh</code> first to populate
-        <code>TableVerse/test_set/</code>.
+      <p class="content has-text-centered" style="color:var(--muted);">
+        Unable to load <code>test_set/list.json</code>. Verify that the JSON list
+        and referenced files under <code>test_set/</code> are included in the Pages deployment.
       </p>`;
     return;
   }
