@@ -49,6 +49,7 @@
   });
   // Following 3 rows: row label + 4 images.
   VIEWS.forEach(v => {
+    cellsHTML.push('<div class="cmp-view-row">');
     cellsHTML.push(`<div class="cmp-row-label">${v.label}</div>`);
     COLS.forEach(c => {
       cellsHTML.push(`
@@ -58,6 +59,7 @@
           </div>
         </figure>`);
     });
+    cellsHTML.push('</div>');
   });
 
   root.innerHTML = `
