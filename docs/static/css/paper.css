@@ -1201,6 +1201,7 @@ a:hover { text-decoration: underline; }
   gap: 0.6rem;
   align-items: stretch;
 }
+.cmp-view-row { display: contents; }
 .cmp-col-label {
   font-weight: 600;
   font-size: 0.95rem;
@@ -1478,14 +1479,20 @@ body.cmp-lb-open { overflow: hidden; }
   }
 }
 @media (max-width: 720px) {
-  /* on mobile, stack method names 2x2 and move viewpoint labels above */
+  /* on mobile, keep each viewpoint label with its own 2x2 method grid */
   .cmp-stage {
-    grid-template-columns: 28px repeat(2, minmax(0, 1fr));
+    display: block;
     overflow-x: visible;
   }
   /* hide the top row's 4 column labels (4->2 columns misaligns them);
      put each method name back as a chip inside its cell */
   .cmp-corner, .cmp-col-label { display: none; }
+  .cmp-view-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.6rem;
+    margin-bottom: 0.9rem;
+  }
   .cmp-cell::before {
     content: attr(data-col);
     position: absolute; top: 6px; left: 8px; z-index: 2;
@@ -1499,7 +1506,14 @@ body.cmp-lb-open { overflow: hidden; }
   .cmp-cell.is-ours::before {
     background: var(--accent-grad);
   }
-  .cmp-row-label { font-size: 0.62rem; }
+  .cmp-row-label {
+    grid-column: 1 / -1;
+    justify-content: flex-start;
+    padding-right: 0;
+    writing-mode: horizontal-tb;
+    transform: none;
+    font-size: 0.75rem;
+  }
   .cmp-grid-head, .cmp-grid-row {
     grid-template-columns: 36px repeat(4, minmax(0, 1fr));
   }
