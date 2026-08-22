@@ -266,7 +266,7 @@
       <h2 class="section-title reveal">BibTeX</h2>
       <div class="bibtex-wrapper reveal">
         <button id="bibtex-copy" class="bibtex-copy" type="button">
-          <i class="far fa-copy"></i> <span>Copy</span>
+          <i class="far fa-copy"></i> <span aria-live="polite">Copy</span>
         </button>
 <pre id="bibtex-content">@article{wang2026tableverse,
   title={TableVerse: A Large-scale Tabletop Dataset with Real-world Grounded Layouts for Generalizable Manipulation},
@@ -414,24 +414,32 @@
       btn.addEventListener('click', function () {
         var text = pre.innerText;
         var label = btn.querySelector('span');
-        var done = function () {
-          label.innerText = 'Copied!';
-          btn.classList.add('is-done');
+        var showStatus = function (message, className) {
+          label.innerText = message;
+          btn.classList.remove('is-done', 'is-error');
+          btn.classList.add(className);
           setTimeout(function () {
             label.innerText = 'Copy';
-            btn.classList.remove('is-done');
+            btn.classList.remove(className);
           }, 1500);
         };
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-          navigator.clipboard.writeText(text).then(done).catch(done);
-        } else {
+        var done = function () { showStatus('Copied!', 'is-done'); };
+        var failed = function () { showStatus('Copy failed', 'is-error'); };
+        var fallbackCopy = function () {
           var ta = document.createElement('textarea');
           ta.value = text;
           document.body.appendChild(ta);
           ta.select();
-          try { document.execCommand('copy'); } catch (e) {}
+          var copied = false;
+          try { copied = document.execCommand('copy'); } catch (e) {}
           document.body.removeChild(ta);
-          done();
+          if (copied) done();
+          else failed();
+        };
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(done).catch(fallbackCopy);
+        } else {
+          fallbackCopy();
         }
       });
     })();
