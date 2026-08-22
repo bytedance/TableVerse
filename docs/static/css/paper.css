@@ -857,6 +857,7 @@ a:hover { text-decoration: underline; }
 }
 .bibtex-copy:hover { background: rgba(255, 255, 255, 0.16); border-color: rgba(255,255,255,0.32); }
 .bibtex-copy.is-done { background: rgba(var(--accent-rgb), 0.35); border-color: rgba(var(--accent-rgb),0.6); }
+.bibtex-copy.is-error { background: rgba(220, 38, 38, 0.28); border-color: rgba(248, 113, 113, 0.7); }
 
 /* ===================================================================== */
 /*  Footer                                                                */
