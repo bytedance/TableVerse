@@ -53,9 +53,9 @@
     COLS.forEach(c => {
       cellsHTML.push(`
         <figure class="cmp-cell${c.highlight ? ' is-ours' : ''}" data-col="${c.key}" data-view="${v.key}">
-          <div class="cmp-cell-img" data-zoom>
+          <button class="cmp-cell-img" type="button" data-zoom aria-label="Enlarge ${c.label}, ${v.label} view">
             <img alt="${c.label} · ${v.label}" loading="lazy" decoding="async">
-          </div>
+          </button>
         </figure>`);
     });
   });
@@ -90,7 +90,7 @@
     <div class="cmp-grid" id="cmp-grid" hidden></div>
 
     <!-- Lightbox -->
-    <div class="cmp-lightbox" id="cmp-lightbox" hidden role="dialog" aria-label="Comparison lightbox">
+    <div class="cmp-lightbox" id="cmp-lightbox" hidden role="dialog" aria-modal="true" aria-label="Comparison lightbox">
       <button class="cmp-lb-close"  type="button" aria-label="Close (Esc)"><i class="fas fa-xmark"></i></button>
       <button class="cmp-lb-arrow is-left"  type="button" aria-label="Previous method"><i class="fas fa-chevron-left"></i></button>
       <button class="cmp-lb-arrow is-right" type="button" aria-label="Next method"><i class="fas fa-chevron-right"></i></button>
@@ -200,7 +200,7 @@
       const y = ((e.clientY - r.top)  / r.height) * 100;
       img.style.transformOrigin = `${x}% ${y}%`;
     });
-    wrap.addEventListener('click', () => openLightbox(cell.dataset.col, cell.dataset.view));
+    wrap.addEventListener('click', () => openLightbox(cell.dataset.col, cell.dataset.view, wrap));
   });
 
   // ---------- Lightbox ----------
@@ -210,6 +210,7 @@
   const lbInfo   = lb.querySelector('.cmp-lb-info');
   let lbCol  = 'ours';
   let lbView = 'front';
+  let lbTrigger = null;
 
   function paintLB() {
     const uid = uids[state.idx];
@@ -219,16 +220,22 @@
     lbMethod.textContent = c.label;
     lbInfo.textContent = `Scene ${state.idx + 1}/${uids.length} · ${v.label} view · ${uid}`;
   }
-  function openLightbox(col, view) {
+  function openLightbox(col, view, trigger) {
     lbCol  = col;
     lbView = view || lbView;
+    lbTrigger = trigger || document.activeElement;
     lb.hidden = false;
     document.body.classList.add('cmp-lb-open');
     paintLB();
+    lb.querySelector('.cmp-lb-close').focus();
   }
   function closeLightbox() {
+    if (lb.hidden) return;
     lb.hidden = true;
     document.body.classList.remove('cmp-lb-open');
+    const trigger = lbTrigger;
+    lbTrigger = null;
+    if (trigger && trigger.isConnected) trigger.focus();
   }
   function lbStepMethod(d) {
     const i = COLS.findIndex(c => c.key === lbCol);
@@ -267,9 +274,9 @@
         <div class="cmp-grid-row" data-idx="${i}">
           <div class="cmp-grid-cell is-num">${i + 1}</div>
           ${COLS.map(c => `
-            <div class="cmp-grid-cell${c.highlight ? ' is-ours' : ''}" data-col="${c.key}">
+            <button class="cmp-grid-cell${c.highlight ? ' is-ours' : ''}" type="button" data-col="${c.key}" aria-label="Enlarge ${c.label}, front view">
               <img loading="lazy" decoding="async" alt="">
-            </div>`).join('')}
+            </button>`).join('')}
         </div>`);
     });
     grid.innerHTML = html.join('');
@@ -308,12 +315,26 @@
     if (!cell) return;
     const row = cell.closest('.cmp-grid-row');
     setIdx(parseInt(row.dataset.idx, 10));
-    openLightbox(cell.dataset.col, COMPACT_VIEW);
+    openLightbox(cell.dataset.col, COMPACT_VIEW, cell);
   });
 
   // ---------- Keyboard ----------
   document.addEventListener('keydown', (e) => {
     const lbOpen = !lb.hidden;
+    if (lbOpen && e.key === 'Tab') {
+      const focusable = [...lb.querySelectorAll('button:not([disabled]), [href], [tabindex]:not([tabindex="-1"])')]
+        .filter(el => !el.hidden);
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (first && e.shiftKey && document.activeElement === first) {
+        last.focus();
+        e.preventDefault();
+      } else if (last && !e.shiftKey && document.activeElement === last) {
+        first.focus();
+        e.preventDefault();
+      }
+      return;
+    }
     if (!lbOpen) {
       const rect = root.getBoundingClientRect();
       const inView = rect.top < window.innerHeight * 0.9 && rect.bottom > window.innerHeight * 0.1;

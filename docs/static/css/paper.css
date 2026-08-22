@@ -1252,12 +1252,21 @@ a:hover { text-decoration: underline; }
   box-shadow: 0 0 0 1px rgba(var(--accent-rgb),0.45), var(--shadow-md);
 }
 .cmp-cell-img {
+  appearance: none;
+  border: 0;
+  padding: 0;
   position: relative;
   width: 100%;
   aspect-ratio: 1 / 1;
   overflow: hidden;
   background: #f0f1f4;
   cursor: zoom-in;
+}
+.cmp-cell-img:focus-visible,
+.cmp-grid-cell[data-col]:focus-visible {
+  outline: 3px solid rgba(var(--accent-rgb), 0.75);
+  outline-offset: 2px;
+  z-index: 2;
 }
 .cmp-cell-img img {
   width: 100%; height: 100%;
@@ -1454,6 +1463,9 @@ body.cmp-lb-open { overflow: hidden; }
   background: var(--bg-grey);
 }
 .cmp-grid-cell[data-col] {
+  appearance: none;
+  border: 0;
+  padding: 0;
   aspect-ratio: 1 / 1;
   cursor: zoom-in;
 }
