@@ -14,13 +14,11 @@
 ## Citation
 
 ```bibtex
-@misc{tableverse2026,
-  title         = {TableVerse: A Large-scale Tabletop Dataset with Real-world Grounded Layouts for Generalizable Manipulation},
-  author        = {ByteDance},
-  year          = {2026},
-  eprint        = {2607.21017},
-  archivePrefix = {arXiv},
-  primaryClass  = {cs.RO}
+@article{wang2026tableverse,
+  title={TableVerse: A Large-scale Tabletop Dataset with Real-world Grounded Layouts for Generalizable Manipulation},
+  author={Wang, Boyuan and Zhang, Yue and Xue, Xutao and Song, Xueyu and Sun, Yu},
+  journal={arXiv preprint arXiv:2607.21017},
+  year={2026}
 }
 ```
 
